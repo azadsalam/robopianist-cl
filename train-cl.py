@@ -280,19 +280,34 @@ def main(args: Args) -> None:
     'RoboPianist-etude-12-PianoSonataNo232NdMov-v0', 'RoboPianist-etude-12-GolliwoggsCakewalk-v0', 
     'RoboPianist-etude-12-PianoSonataNo21StMov-v0', 'RoboPianist-etude-12-PianoSonataK279InCMajor1StMov-v0']
 
+    env_names_train_set_1 = ['RoboPianist-repertoire-150-PreludeOp28No19-v0', 'RoboPianist-repertoire-150-NorwegianDanceOp35No3-v0', 
+            'RoboPianist-repertoire-150-PianoSonataNo41StMov-v0', 'RoboPianist-repertoire-150-NocturneOp9No2-v0',
+            'RoboPianist-repertoire-150-BalladeNo2-v0', 'RoboPianist-repertoire-150-BalladeNo1-v0', 
+            'RoboPianist-repertoire-150-PianoSonataNo5-v0', 'RoboPianist-repertoire-150-TwoPartInventionInCMinor-v0', 
+            'RoboPianist-repertoire-150-LaChasseOp19No3-v0', 'RoboPianist-repertoire-150-PianoSonataK282InEbMajorMinuet1-v0', 
+            'RoboPianist-repertoire-150-KreislerianaOp16No1-v0', 'RoboPianist-repertoire-150-LaFilleAuxCheveuxDeLin-v0']
+
+    env_names_train_set_2 = ['RoboPianist-repertoire-150-MazurkaOp7No1-v0', 'RoboPianist-repertoire-150-SuiteBergamasquePasspied-v0', 
+            'RoboPianist-repertoire-150-RomanianDanceNo1-v0', 'RoboPianist-repertoire-150-PianoSonataNo303RdMov-v0', 
+            'RoboPianist-repertoire-150-Sonatine1StMov-v0', 'RoboPianist-repertoire-150-LaFilleAuxCheveuxDeLin-v0', 
+            'RoboPianist-repertoire-150-PianoSonataNo241StMov-v0', 'RoboPianist-repertoire-150-LyricPiecesOp62No2-v0', 
+            'RoboPianist-repertoire-150-JeuxDeau-v0', 'RoboPianist-repertoire-150-TwoPartInventionInCMinor-v0', 
+            'RoboPianist-repertoire-150-PianoSonataNo43RdMov-v0', 'RoboPianist-repertoire-150-ForElise-v0']
+
     
-    def get_env_names(arg):
-        if arg == "etude_12":
+    def get_env_names(names):
+        if names == "etude_12":
             return env_names_etude_12
+        elif names == "train_set_1": return env_names_train_set_1
+        elif names == "train_set_2": return env_names_train_set_2
         else:
-            return [s.strip() for s in args.train_environment_names.split(',')]
+            return [s.strip() for s in names.split(',')]
         
     
     train_env_names = get_env_names(args.train_environment_names)
     test_env_names = get_env_names(args.test_environment_names)
     
     train_melodies = [melody_name_from_env_name(s) for s in train_env_names]
-
 
     #etude_melodies = ["FrenchSuiteNo1Allemande", "FrenchSuiteNo5Sarabande", "PianoSonataD8451StMov", "PartitaNo26", 
     #              "WaltzOp64No1", "BagatelleOp3No4", "KreislerianaOp16No8", "FrenchSuiteNo5Gavotte", 
