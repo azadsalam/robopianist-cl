@@ -1,0 +1,46 @@
+https://code.visualstudio.com/docs/python/environments#:~:text=You%20can%20manually%20specify%20the,Settings%2C%20with%20the%20appropriate%20path. 
+open the Command Palette (⇧⌘P), 
+
+env_names_etude_12 = ['RoboPianist-etude-12-FrenchSuiteNo1Allemande-v0', 'RoboPianist-etude-12-FrenchSuiteNo5Sarabande-v0', 
+    'RoboPianist-etude-12-PianoSonataD8451StMov-v0', 'RoboPianist-etude-12-PartitaNo26-v0', 
+    'RoboPianist-etude-12-WaltzOp64No1-v0', 'RoboPianist-etude-12-BagatelleOp3No4-v0',
+    'RoboPianist-etude-12-KreislerianaOp16No8-v0', 'RoboPianist-etude-12-FrenchSuiteNo5Gavotte-v0', 
+    'RoboPianist-etude-12-PianoSonataNo232NdMov-v0', 'RoboPianist-etude-12-GolliwoggsCakewalk-v0', 
+    'RoboPianist-etude-12-PianoSonataNo21StMov-v0', 'RoboPianist-etude-12-PianoSonataK279InCMajor1StMov-v0']
+
+
+questions:
+
+
+* what does recompile_physics of suite.load() do ? 
+
+
+* about generating automatic environments, e.g., midi:
+    * what about Part information ? 
+
+    * reward function 
+        - do we know the highest bound ? 
+
+
+
+------------------------------
+
+
+(most likely) resolved: 
+* what is part in note - left/right fingers? 
+ 
+
+
+setup: 
+
+pip install --upgrade bokeh==2.4.3 
+
+
+---
+uniform 5s new - aug 28 - pid 2479531
+
+
+---
+run_cl_uniform_sarabande.sh - aug 31 - 63859
+
+(with/without random hands) run_cl_uniform_new.sh - aug 31 - 119015

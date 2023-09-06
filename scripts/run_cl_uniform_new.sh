@@ -1,0 +1,86 @@
+#!/bin/bash
+
+wandb login a88c2cbfefd2a1971a88095e03b1c4f91bce0c47
+
+WANDB_DIR=/home/azad/exp-robopianist/wandb MUJOCO_GL=egl XLA_PYTHON_CLIENT_PREALLOCATE=false CUDA_VISIBLE_DEVICES=0 MUJOCO_EGL_DEVICE_ID=0 python train-cl.py \
+    --root-dir /home/azad/exp-robopianist/ \
+    --project robopianist \
+    --warmstart-steps 5000 \
+    --curriculum uniform \
+    --alpha 1 \
+    --segment_core_length 5 \
+    --max-steps 1000000 \
+    --mode "online" \
+    --name CL-SAC-uniform-sarabande-random-initial-hand-position \
+    --train_environment_names "RoboPianist-etude-12-FrenchSuiteNo5Sarabande-v0"\
+    --test_environment_names "RoboPianist-etude-12-FrenchSuiteNo5Sarabande-v0"\
+    --discount 0.8 \
+    --agent-config.critic-dropout-rate 0.01 \
+    --agent-config.critic-layer-norm \
+    --agent-config.hidden-dims 256 256 256 \
+    --trim-silence \
+    --gravity-compensation \
+    --reduced-action-space \
+    --control-timestep 0.05 \
+    --n-steps-lookahead 10 \
+    --action-reward-observation \
+    --primitive-fingertip-collisions \
+    --eval-episodes 1 \
+    --camera-id "piano/back" \
+    --tqdm-bar \
+    --randomize_hand_positions
+
+WANDB_DIR=/home/azad/exp-robopianist/wandb MUJOCO_GL=egl XLA_PYTHON_CLIENT_PREALLOCATE=false CUDA_VISIBLE_DEVICES=0 MUJOCO_EGL_DEVICE_ID=0 python train-cl.py \
+    --root-dir /home/azad/exp-robopianist/ \
+    --project robopianist \
+    --warmstart-steps 5000 \
+    --curriculum uniform \
+    --alpha 1 \
+    --segment_core_length 5 \
+    --max-steps 1000000 \
+    --mode "online" \
+    --name CL-SAC-uniform-BagatelleOp3No4-fixed-initial-hand-position \
+    --train_environment_names "RoboPianist-etude-12-BagatelleOp3No4-v0"\
+    --test_environment_names "RoboPianist-etude-12-BagatelleOp3No4-v0"\
+    --discount 0.8 \
+    --agent-config.critic-dropout-rate 0.01 \
+    --agent-config.critic-layer-norm \
+    --agent-config.hidden-dims 256 256 256 \
+    --trim-silence \
+    --gravity-compensation \
+    --reduced-action-space \
+    --control-timestep 0.05 \
+    --n-steps-lookahead 10 \
+    --action-reward-observation \
+    --primitive-fingertip-collisions \
+    --eval-episodes 1 \
+    --camera-id "piano/back" \
+    --tqdm-bar 
+
+WANDB_DIR=/home/azad/exp-robopianist/wandb MUJOCO_GL=egl XLA_PYTHON_CLIENT_PREALLOCATE=false CUDA_VISIBLE_DEVICES=0 MUJOCO_EGL_DEVICE_ID=0 python train-cl.py \
+    --root-dir /home/azad/exp-robopianist/ \
+    --project robopianist \
+    --warmstart-steps 5000 \
+    --curriculum uniform \
+    --alpha 1 \
+    --segment_core_length 5 \
+    --max-steps 1000000 \
+    --mode "online" \
+    --name CL-SAC-uniform-BagatelleOp3No4-random-initial-hand-position \
+    --train_environment_names "RoboPianist-etude-12-BagatelleOp3No4-v0"\
+    --test_environment_names "RoboPianist-etude-12-BagatelleOp3No4-v0"\
+    --discount 0.8 \
+    --agent-config.critic-dropout-rate 0.01 \
+    --agent-config.critic-layer-norm \
+    --agent-config.hidden-dims 256 256 256 \
+    --trim-silence \
+    --gravity-compensation \
+    --reduced-action-space \
+    --control-timestep 0.05 \
+    --n-steps-lookahead 10 \
+    --action-reward-observation \
+    --primitive-fingertip-collisions \
+    --eval-episodes 1 \
+    --camera-id "piano/back" \
+    --tqdm-bar \
+    --randomize_hand_positions
