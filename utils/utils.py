@@ -101,3 +101,35 @@ def get_overlapping_chunks_with_auto_overlap(midi, length):
         
 
     return chunks
+
+
+def get_all_training_melodies():
+
+    from robopianist import music
+
+    pig_melodies = set(music.PIG_MIDIS) - set(music.ETUDE_MIDIS) 
+
+    #Filter Songs with empty notes
+
+    filter_out = set()
+    for melody in pig_melodies:
+        midi = music.load(melody)
+
+        for note in midi.seq.notes:
+            if (note.end_time-note.start_time) <= 0:
+                filter_out.add(melody)
+                break 
+
+    pig_melodies = pig_melodies - filter_out
+                
+    
+    return list(pig_melodies), list(filter_out)
+
+
+def get_all_training_envs():
+
+    environment_name = "RoboPianist-repertoire-150-{}-v0"
+
+    names, _ = get_all_training_melodies()
+    environment_names = [environment_name.format(name) for name in names]
+    return environment_names

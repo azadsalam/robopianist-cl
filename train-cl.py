@@ -7,6 +7,7 @@ import time
 import random
 import numpy as np
 from tqdm import tqdm
+import orbax.checkpoint
 
 import sac
 import specs
@@ -300,6 +301,7 @@ def main(args: Args) -> None:
             return env_names_etude_12
         elif names == "train_set_1": return env_names_train_set_1
         elif names == "train_set_2": return env_names_train_set_2
+        elif names == 'train_set_all': return utils.get_all_training_envs()
         else:
             return [s.strip() for s in names.split(',')]
         
@@ -343,6 +345,12 @@ def main(args: Args) -> None:
         action_dim=spec.action_dim,
         max_size=args.replay_capacity,
         batch_size=args.batch_size,
+    )
+    options = orbax.checkpoint.CheckpointManagerOptions(max_to_keep=1)
+    checkpointer = orbax.checkpoint.CheckpointManager(
+        experiment_dir / "checkpoints",
+        orbax.checkpoint.Checkpointer(orbax.checkpoint.PyTreeCheckpointHandler()),
+        options=options,
     )
 
     timestep = env.reset()
@@ -425,17 +433,17 @@ def main(args: Args) -> None:
                 
 
 
-
             wandb.log(stat_dict, step=i)
-
-            
-
+            checkpointer.save(i, agent)
 
 
-            #aggregate 
+
+
 
         if i % args.log_interval == 0:
             wandb.log({"train/fps": int(i / (time.time() - start_time))}, step=i)
+
+    checkpointer.save(i, agent)
 
 
 if __name__ == "__main__":
