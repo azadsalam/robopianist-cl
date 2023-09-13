@@ -214,9 +214,12 @@ class SegmentCurriculum():
         self.frequency     = np.zeros(len(self.segments))
         self.last_reward   = np.ones(len(self.segments)) * eps
 
+
+
+
         self.args =  args
 
-    def update_curriculum(self, env_stat):
+    def update_curriculum(self, env_stat, step):
         
         rew = env_stat["return"]
         self.last_reward[self.cur] = rew
@@ -234,6 +237,27 @@ class SegmentCurriculum():
         elif self.mode == "uniform":
             self.cur = np.random.randint(0, high=len(self.segments), dtype=int)
             #print(f"new_segment: {self.cur}")
+
+        elif self.mode == "incremental_uniform":
+
+            min_window_len = 80
+            inc_start_tstep =  500000
+            inc_end_tstep   = 3000000
+
+
+            if step <= inc_start_tstep: window_len = min_window_len
+            elif step >= inc_end_tstep: window_len = len(self.segments)
+            else:
+                
+                slope = (len(self.segments) - min_window_len) / (inc_end_tstep-inc_start_tstep)
+                increment = int(slope * (step-inc_start_tstep) )
+                window_len = min_window_len + increment
+
+
+
+            self.cur = np.random.randint(0, high=window_len, dtype=int) 
+
+            #print("cur segment#index: ", self.cur, "window len", window_len) 
         else:
             raise NotImplementedError
 
@@ -302,6 +326,8 @@ def main(args: Args) -> None:
         elif names == "train_set_1": return env_names_train_set_1
         elif names == "train_set_2": return env_names_train_set_2
         elif names == 'train_set_all': return utils.get_all_training_envs()
+        elif names == "train_set_64_1": return utils.env_names_train_set_64_1
+        elif names == "train_set_32_1": return utils.env_names_train_set_32_1
         else:
             return [s.strip() for s in names.split(',')]
         
@@ -375,7 +401,7 @@ def main(args: Args) -> None:
             wandb.log(prefix_dict("train", env_stat), step=i)
 
             #update curriculum
-            curriclulum.update_curriculum(env_stat=env_stat)
+            curriclulum.update_curriculum(env_stat=env_stat, step=i)
 
             timestep = env.reset()
             replay_buffer.insert(timestep, None)

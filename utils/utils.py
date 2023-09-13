@@ -37,10 +37,6 @@ def truncate_note_sequence(sequence, start_time, end_time):
     
     return subsequence
 
-
-
-
-
 def get_overlapping_chunks(midi, length, overlap_left, overlap_right):
     
     chunks = []
@@ -64,8 +60,6 @@ def get_overlapping_chunks(midi, length, overlap_left, overlap_right):
         i+=length
 
     return chunks
-
-
 
 def get_overlapping_chunks_with_auto_overlap(midi, length):
     import numpy as np
@@ -103,6 +97,106 @@ def get_overlapping_chunks_with_auto_overlap(midi, length):
     return chunks
 
 
+
+env_names_train_set_32_1 = ['RoboPianist-repertoire-150-EtudeOp10No3-v0',
+ 'RoboPianist-repertoire-150-WellTemperedClavierBookIPreludeNo23InBMajor-v0',
+ 'RoboPianist-repertoire-150-EtudeOp25No11-v0',
+ 'RoboPianist-repertoire-150-BalladeNo1-v0',
+ 'RoboPianist-repertoire-150-EtudeOp10No12-v0',
+ 'RoboPianist-repertoire-150-PreludeOp28No7-v0',
+ 'RoboPianist-repertoire-150-PianoSonataK332InFMajor3RdMov-v0',
+ 'RoboPianist-repertoire-150-ClairDeLune-v0',
+ 'RoboPianist-repertoire-150-PianoSonataK576InDMinor1StMov-v0',
+ 'RoboPianist-repertoire-150-MusicalMomentOp16No4-v0',
+ 'RoboPianist-repertoire-150-TwoPartInventionInDMajor-v0',
+ 'RoboPianist-repertoire-150-PianoSonataK282InEbMajorMinuet1-v0',
+ 'RoboPianist-repertoire-150-FantaisieImpromptu-v0',
+ 'RoboPianist-repertoire-150-PianoSonataNo142NdMov-v0',
+ 'RoboPianist-repertoire-150-VenetianischesGondelliedOp30No6-v0',
+ 'RoboPianist-repertoire-150-RomanianDanceNo1-v0',
+ 'RoboPianist-repertoire-150-WellTemperedClavierBookIPreludeNo7InEbMajor-v0',
+ 'RoboPianist-repertoire-150-PianoSonataK281InBbMajor1StMov-v0',
+ 'RoboPianist-repertoire-150-CarnivalOp37ANo2-v0',
+ 'RoboPianist-repertoire-150-ImpromptuOp90No4-v0',
+ 'RoboPianist-repertoire-150-PianoSonataNo141StMov-v0',
+ 'RoboPianist-repertoire-150-PianoSonata1StMov-v0',
+ 'RoboPianist-repertoire-150-WaltzOp64No2-v0',
+ 'RoboPianist-repertoire-150-FrohlicherLandmannOp68No10-v0',
+ 'RoboPianist-repertoire-150-LaChasseOp19No3-v0',
+ 'RoboPianist-repertoire-150-PreludeOp23No5-v0',
+ 'RoboPianist-repertoire-150-EnglishSuiteNo2Prelude-v0',
+ 'RoboPianist-repertoire-150-FantasieStuckeOp12No7-v0',
+ 'RoboPianist-repertoire-150-TwoPartInventionInCMajor-v0',
+ 'RoboPianist-repertoire-150-MazurkaOp7No1-v0',
+ 'RoboPianist-repertoire-150-ScherzoNo2-v0',
+ 'RoboPianist-repertoire-150-PartitaNo42-v0']
+
+env_names_train_set_64_1 = ['RoboPianist-repertoire-150-EtudeOp10No3-v0',
+ 'RoboPianist-repertoire-150-WellTemperedClavierBookIPreludeNo23InBMajor-v0',
+ 'RoboPianist-repertoire-150-EtudeOp25No11-v0',
+ 'RoboPianist-repertoire-150-BalladeNo1-v0',
+ 'RoboPianist-repertoire-150-EtudeOp10No12-v0',
+ 'RoboPianist-repertoire-150-PreludeOp28No7-v0',
+ 'RoboPianist-repertoire-150-PianoSonataK332InFMajor3RdMov-v0',
+ 'RoboPianist-repertoire-150-ClairDeLune-v0',
+ 'RoboPianist-repertoire-150-PianoSonataK576InDMinor1StMov-v0',
+ 'RoboPianist-repertoire-150-MusicalMomentOp16No4-v0',
+ 'RoboPianist-repertoire-150-TwoPartInventionInDMajor-v0',
+ 'RoboPianist-repertoire-150-PianoSonataK282InEbMajorMinuet1-v0',
+ 'RoboPianist-repertoire-150-FantaisieImpromptu-v0',
+ 'RoboPianist-repertoire-150-PianoSonataNo142NdMov-v0',
+ 'RoboPianist-repertoire-150-VenetianischesGondelliedOp30No6-v0',
+ 'RoboPianist-repertoire-150-RomanianDanceNo1-v0',
+ 'RoboPianist-repertoire-150-WellTemperedClavierBookIPreludeNo7InEbMajor-v0',
+ 'RoboPianist-repertoire-150-PianoSonataK281InBbMajor1StMov-v0',
+ 'RoboPianist-repertoire-150-CarnivalOp37ANo2-v0',
+ 'RoboPianist-repertoire-150-ImpromptuOp90No4-v0',
+ 'RoboPianist-repertoire-150-PianoSonataNo141StMov-v0',
+ 'RoboPianist-repertoire-150-PianoSonata1StMov-v0',
+ 'RoboPianist-repertoire-150-WaltzOp64No2-v0',
+ 'RoboPianist-repertoire-150-FrohlicherLandmannOp68No10-v0',
+ 'RoboPianist-repertoire-150-LaChasseOp19No3-v0',
+ 'RoboPianist-repertoire-150-PreludeOp23No5-v0',
+ 'RoboPianist-repertoire-150-EnglishSuiteNo2Prelude-v0',
+ 'RoboPianist-repertoire-150-FantasieStuckeOp12No7-v0',
+ 'RoboPianist-repertoire-150-TwoPartInventionInCMajor-v0',
+ 'RoboPianist-repertoire-150-MazurkaOp7No1-v0',
+ 'RoboPianist-repertoire-150-ScherzoNo2-v0',
+ 'RoboPianist-repertoire-150-PartitaNo42-v0',
+ 'RoboPianist-repertoire-150-PianoSonataNo82NdMov-v0',
+ 'RoboPianist-repertoire-150-JeuxDeau-v0',
+ 'RoboPianist-repertoire-150-PianoSonataNo143RdMov-v0',
+ 'RoboPianist-repertoire-150-PavanePourUneInfanteDefunte-v0',
+ 'RoboPianist-repertoire-150-PianoSonataNo213RdMov-v0',
+ 'RoboPianist-repertoire-150-SuiteEspanolaOp45No1-v0',
+ 'RoboPianist-repertoire-150-PianoSonataK576InDMajor2NdMov-v0',
+ 'RoboPianist-repertoire-150-LyricPiecesOp43No1-v0',
+ 'RoboPianist-repertoire-150-PianoSonataK284InDMajor1StMov-v0',
+ 'RoboPianist-repertoire-150-WellTemperedClavierBookIiPreludeNo11InFMajor-v0',
+ 'RoboPianist-repertoire-150-PeerGyntOp46No2-v0',
+ 'RoboPianist-repertoire-150-PianoSonataK457InCMinor3RdMov-v0',
+ 'RoboPianist-repertoire-150-KreislerianaOp16No1-v0',
+ 'RoboPianist-repertoire-150-PianoSonataK283InGMajor1StMov-v0',
+ 'RoboPianist-repertoire-150-PianoSonataNo303RdMov-v0',
+ 'RoboPianist-repertoire-150-TwoPartInventionInCMinor-v0',
+ 'RoboPianist-repertoire-150-WellTemperedClavierBookIPreludeNo2InCMinor-v0',
+ 'RoboPianist-repertoire-150-EnglishSuiteNo3Prelude-v0',
+ 'RoboPianist-repertoire-150-SonataInAMajorK208-v0',
+ 'RoboPianist-repertoire-150-KreislerianaOp16No3-v0',
+ 'RoboPianist-repertoire-150-JeTeVeux-v0',
+ 'RoboPianist-repertoire-150-PianoSonataNo5-v0',
+ 'RoboPianist-repertoire-150-NocturneOp9No2-v0',
+ 'RoboPianist-repertoire-150-SongWithoutWordsOp19No1-v0',
+ 'RoboPianist-repertoire-150-SinfoniaNo12-v0',
+ 'RoboPianist-repertoire-150-ItalianConverto1StMov-v0',
+ 'RoboPianist-repertoire-150-Reverie-v0',
+ 'RoboPianist-repertoire-150-PianoSonataK284InDMajor3RdMov-v0',
+ 'RoboPianist-repertoire-150-SuiteBergamasquePrelude-v0',
+ 'RoboPianist-repertoire-150-PianoSonataK570InBbMajor1StMov-v0',
+ 'RoboPianist-repertoire-150-PianoSonataNo43RdMov-v0',
+ 'RoboPianist-repertoire-150-GrandeValseBrillanteOp18-v0']
+
+
 def get_all_training_melodies():
 
     from robopianist import music
@@ -124,7 +218,6 @@ def get_all_training_melodies():
                 
     
     return list(pig_melodies), list(filter_out)
-
 
 def get_all_training_envs():
 

@@ -44,3 +44,11 @@ uniform 5s new - aug 28 - pid 2479531
 run_cl_uniform_sarabande.sh - aug 31 - 63859
 
 (with/without random hands) run_cl_uniform_new.sh - aug 31 - 119015
+
+
+----------------
+git remote add repo-kevin https://github.com/kevinzakka/robopianist.git
+git remote -v 
+
+
+git fetch repo-kevin

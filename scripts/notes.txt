@@ -1,0 +1,22 @@
+2475875
+
+train_set_all - Friday sep 08 - 7 PM 
+uniform 
+    ------------       ------------
+3325514 
+
+train_set_all - Saturday sep 09 - 3:30 PM 
+incremental uniform 
+    ------------       ------------
+
+
+3408717
+
+train_set_64 - Saturday sep 09 - 3:30 PM 
+ uniform 
+
+     ------------       ------------
+
+3418794
+train_set_32 - Saturday sep 09 - 3:30 PM 
+ uniform 
